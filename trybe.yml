@@ -1,0 +1,6 @@
+ignore_files:
+  - pom.xml
+  - src/test/java/com/trybe/acc/java/caixaeletronico/CoverageValidationTest.java
+  - src/main/java/com/trybe/acc/java/caixaeletronico/XmlParser.java
+  - mvnw
+  - .mvn/
