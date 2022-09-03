@@ -55,10 +55,12 @@ class PessoaClienteTest {
   }
 
   @Test
-  @DisplayName("18 - Testa o método validar senha.")
+  @DisplayName ("18 - Testa o método validar senha.")
   void validarSenhaTest() {
-    fail("Não implementado");
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
 
+    assertTrue(client.validarSenha("123456"));
+    assertFalse(client.validarSenha("12345623"));
   }
 
   @Test
