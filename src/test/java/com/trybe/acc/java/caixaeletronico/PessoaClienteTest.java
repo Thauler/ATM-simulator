@@ -32,8 +32,15 @@ class PessoaClienteTest {
   @Test
   @DisplayName ("13 - Testa o método adicionar conta e o método retornar número de contas.")
   void adicionarContaTestRetornaNumeroDeContasTest() {
-    fail("Não implementado");
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
 
+    Banco bank = new Banco();
+
+    Conta account = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(account);
+
+    assertEquals(1, client.retornarNumeroDeContas());
   }
 
   @Test
