@@ -1,8 +1,12 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @DisplayName("Testes dos métodos da classe Transacao")
 class TransacaoTest {
@@ -11,8 +15,14 @@ class TransacaoTest {
   @Test
   @DisplayName("21 - Testa o método construtor da classe Transacao.")
   void construtorTest() {
-    fail("Não implementado");
+    String formato = "dd/MM/yyyy HH:mm:ss";
+    String dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(formato));
 
+    Transacao transaction = new Transacao(100.00, "Depósito efetuado");
+
+    assertEquals(dateAndTime, transaction.retornarInstante());
+    assertEquals(100.00, transaction.getQuantia());
+    assertTrue(transaction.retornarResumoTransacao().contains("Depósito efetuado"));
   }
 
 
