@@ -23,8 +23,7 @@ public class PessoaCliente {
     this.nomeCompleto = nomeCompleto;
     this.cpf = cpf;
     this.senha = senha;
-    System.out.println("Nova pessoa cliente "
-        + this.nomeCompleto + " com CPF: " + this.cpf + " criada!");
+    System.out.printf("Nova pessoa cliente %s com CPF: %s criada!%n", nomeCompleto, cpf);
   }
 
   /**
