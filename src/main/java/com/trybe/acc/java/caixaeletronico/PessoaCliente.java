@@ -54,4 +54,13 @@ public class PessoaCliente {
   public void adicionarConta(Conta account) {
     this.contas.add(account);
   }
+
+  /**
+   * Retornar numero de contas int.
+   *
+   * @return the int
+   */
+  public int retornarNumeroDeContas() {
+    return contas.size();
+  }
 }
