@@ -3,6 +3,10 @@ package com.trybe.acc.java.caixaeletronico;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,8 +18,15 @@ class PessoaClienteTest {
   @Test
   @DisplayName ("12 - Testa o construtor da classe Pessoa Cliente.")
   void construtorTest() {
-    fail("Não implementado");
+    OutputStream os = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(os);
+    System.setOut(ps);
 
+    new PessoaCliente("Thauler", "123.456.789-10", "123456");
+
+    assertEquals("Nova pessoa cliente Thauler com CPF: 123.456.789-10 criada!"
+            + System.getProperty("line.separator"),
+        os.toString());
   }
 
   @Test
