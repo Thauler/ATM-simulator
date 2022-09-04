@@ -37,7 +37,21 @@ public class PessoaCliente {
     return Objects.equals(senha, this.senha);
   }
 
+  /**
+   * Gets cpf.
+   *
+   * @return the cpf
+   */
   public String getCpf() {
     return cpf;
+  }
+
+  /**
+   * Adicionar conta.
+   *
+   * @param account the account
+   */
+  public void adicionarConta(Conta account) {
+    this.contas.add(account);
   }
 }
