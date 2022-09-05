@@ -38,7 +38,9 @@ class TransacaoTest {
   @DisplayName("23 - Testa o método retornar resumo transacao.")
   void retornarResumoTransacaoTest() {
     Transacao transaction = new Transacao(100.01, "Depósito efetuado");
-    String extrato = transaction.retornarInstante() + " -------- Depósito efetuado: R$ 100.01 +";
+
+    String extrato = transaction.retornarInstante() + " -------- Depósito efetuado: R$ 100.01 -";
+
     assertEquals(extrato, transaction.retornarResumoTransacao());
   }
 
