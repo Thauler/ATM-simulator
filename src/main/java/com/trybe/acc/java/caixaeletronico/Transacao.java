@@ -51,7 +51,7 @@ public class Transacao {
    * @return the string
    */
   public String retornarResumoTransacao() {
-      String statementFormat = "%s -------- %s: R$ %s ";
+    String statementFormat = "%s -------- %s: R$ %s ";
 
     if (this.descricao.toLowerCase().contains("recebid")) {
       statementFormat += "+";
