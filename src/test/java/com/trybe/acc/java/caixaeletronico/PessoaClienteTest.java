@@ -59,12 +59,19 @@ class PessoaClienteTest {
 
   }
 
-
   @Test
   @DisplayName ("15 - Testa o método retornar id de uma conta específica da pessoa cliente.")
   void retornarIdContaEspecificaTest() {
-    fail("Não implementado");
+    int accountIndex = 0;
 
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+
+    Conta account = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(account);
+
+    assertEquals(account.getIdConta(), client.retornarIdContaEspecifica(accountIndex));
   }
 
   @Test
