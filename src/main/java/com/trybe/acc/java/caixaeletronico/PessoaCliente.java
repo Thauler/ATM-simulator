@@ -87,4 +87,14 @@ public class PessoaCliente {
     Conta specificAccount = this.contas.get(accountIndex);
     return specificAccount.getIdConta();
   }
+
+  /**
+   * Retornar extrato conta especifica.
+   *
+   * @param accountIndex the account index
+   */
+  public void retornarExtratoContaEspecifica(int accountIndex) {
+    Conta specificAccount = this.contas.get(accountIndex);
+    specificAccount.retornarExtrato();
+  }
 }
