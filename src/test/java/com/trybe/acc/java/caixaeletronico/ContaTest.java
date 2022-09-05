@@ -24,8 +24,19 @@ class ContaTest {
   @Test
   @DisplayName("7 - Testa o método adicionar transação e retornar saldo da conta.")
   void adicionarTransacaoTestRetornarSaldoTest() {
-    fail("Não implementado");
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta account = new Conta("Corrente", client, bank);
 
+    account.adicionarTransacao(100.00, "Depósito recebido");
+    account.adicionarTransacao(100.01, "Depósito recebido");
+
+    assertEquals(200.01, account.retornarSaldo());
+
+    account.adicionarTransacao(101, "Saque feito");
+    account.adicionarTransacao(100, "Transferência feita");
+
+    assertEquals(-0.9900000000000091, account.retornarSaldo());
   }
 
   @Test
