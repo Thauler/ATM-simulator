@@ -24,6 +24,14 @@ public class Conta {
     this.idConta = banco.gerarNumeroNovaConta();
   }
 
+  /**
+   * Gets id conta.
+   *
+   * @return the id conta
+   */
+  public String getIdConta() {
+    return idConta;
+  }
 
   /**
    * Adicionar transacao.
