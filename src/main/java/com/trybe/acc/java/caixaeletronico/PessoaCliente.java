@@ -97,4 +97,18 @@ public class PessoaCliente {
     Conta specificAccount = this.contas.get(accountIndex);
     specificAccount.retornarExtrato();
   }
+
+  /**
+   * Adicionar transacao conta especifica.
+   *
+   * @param accountIndex the account index
+   * @param quantity     the quantity
+   * @param description  the description
+   */
+  public void adicionarTransacaoContaEspecifica(
+      int accountIndex, double quantity, String description) {
+    Conta specificAccount = this.contas.get(accountIndex);
+    specificAccount.adicionarTransacao(quantity, description);
+  }
+
 }
