@@ -16,7 +16,6 @@ class ContaTest {
 
     Conta account = new Conta("Corrente", client, bank);
 
-    assertEquals("Corrente", account.getTipoConta());
     assertEquals(client, account.getPessoaCliente());
     assertEquals(10, bank.gerarNumeroNovaConta().length(), account.getIdConta().length());
   }

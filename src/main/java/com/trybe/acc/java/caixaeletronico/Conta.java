@@ -25,4 +25,31 @@ public class Conta {
   }
 
 
+  /**
+   * Adicionar transacao.
+   *
+   * @param quantity    the quantity
+   * @param description the description
+   */
+  public void adicionarTransacao(double quantity, String description) {
+    Transacao transaction = new Transacao(quantity, description);
+    this.transacoes.add(transaction);
+  }
+
+  /**
+   * Retornar saldo double.
+   *
+   * @return the double
+   */
+  public double retornarSaldo() {
+    double balance = 0;
+    for (Transacao transaction : this.transacoes) {
+      if (transaction.retornarResumoTransacao().endsWith("-")) {
+        balance -= transaction.getQuantia();
+      } else {
+        balance += transaction.getQuantia();
+      }
+    }
+    return balance;
+  }
 }
