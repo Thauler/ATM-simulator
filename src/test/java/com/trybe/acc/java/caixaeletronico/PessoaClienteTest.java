@@ -12,7 +12,6 @@ import java.time.format.DateTimeFormatter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 @DisplayName ("Teste dos métodos da classe PessoaCliente")
 class PessoaClienteTest {
@@ -115,8 +114,25 @@ class PessoaClienteTest {
   @Test
   @DisplayName ("17 - Testa o método adiciona transacao de uma conta específica da pessoa cliente.")
   void adicionarTransacaoContaEspecificaTest() {
-    fail("Não implementado");
+    int accountIndex = 0;
+    double quantity = 100.0;
+    String description = "Depósito recebido";
+    String formato = "dd/MM/yyyy HH:mm:ss";
+    String dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(formato));
 
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Transacao newTransaction = new Transacao(quantity, description);
+    Banco bank = new Banco();
+    Conta account = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(account);
+
+    account.adicionarTransacao(100, "Depósito recebido");
+
+    client.adicionarTransacaoContaEspecifica(accountIndex, quantity, description);
+
+    assertEquals(dateAndTime + " -------- Depósito recebido: R$ 100.0 +",
+        newTransaction.retornarResumoTransacao());
   }
 
   @Test
