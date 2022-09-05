@@ -147,8 +147,24 @@ class PessoaClienteTest {
   @Test
   @DisplayName ("19 - Testa o método retornar resumo contas.")
   void retornarResumoContasTest() {
-    fail("Não implementado");
+    OutputStream os = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(os);
+    System.setOut(ps);
 
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta account = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(account);
+
+    account.adicionarTransacao(100, "Depósito recebido");
+
+    client.retornarResumoContas();
+
+    assertEquals("Nova pessoa cliente Thauler com CPF: 123.456.789-10 criada!\n" +
+            account.getIdConta() + " : R$100.0 : Corrente"
+            + System.getProperty("line.separator"),
+        os.toString());
 
   }
 
