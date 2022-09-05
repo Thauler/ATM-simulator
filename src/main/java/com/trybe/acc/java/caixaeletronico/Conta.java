@@ -78,4 +78,13 @@ public class Conta {
       System.out.println(transaction.retornarResumoTransacao());
     }
   }
+
+  /**
+   * Retornar resumo conta string.
+   *
+   * @return the string
+   */
+  public String retornarResumoConta() {
+    return String.format("%s : R$%s : %s", this.idConta, this.retornarSaldo(), this.tipoConta);
+  }
 }
