@@ -51,9 +51,20 @@ public class Transacao {
    * @return the string
    */
   public String retornarResumoTransacao() {
-    String extrato = String
-        .format("%s -------- %s: R$ %s +", instante, descricao, quantia);
-    return extrato;
+      String statementFormat = "%s -------- %s: R$ %s ";
+
+    if (this.descricao.toLowerCase().contains("recebid")) {
+      statementFormat += "+";
+    } else {
+      statementFormat += "-";
+    }
+
+    return stringStatement(statementFormat);
+  }
+
+  private String stringStatement(String statementFormat) {
+    return String
+        .format(statementFormat, this.instante, this.descricao, this.quantia);
   }
 }
 
