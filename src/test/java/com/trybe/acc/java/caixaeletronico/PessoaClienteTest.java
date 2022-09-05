@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -77,7 +79,36 @@ class PessoaClienteTest {
   @Test
   @DisplayName ("16 - Testa o método retornar o extrato de uma conta específica da pessoa cliente.")
   void retornarExtratoContaEspecificaTest() {
-    fail("Não implementado");
+    int accountIndex = 0;
+
+    String formato = "dd/MM/yyyy HH:mm:ss";
+    String dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(formato));
+
+    OutputStream os = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(os);
+    System.setOut(ps);
+
+
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta account = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(account);
+
+    client.retornarExtratoContaEspecifica(accountIndex);
+
+    account.adicionarTransacao(100, "Depósito recebido");
+    account.adicionarTransacao(100, "Depósito recebido");
+    account.adicionarTransacao(100, "Depósito recebido");
+
+    account.retornarExtrato();
+
+    assertEquals("Nova pessoa cliente Thauler com CPF: 123.456.789-10 criada!\n" +
+            dateAndTime + " -------- Depósito recebido: R$ 100.0 +\n" +
+            dateAndTime + " -------- Depósito recebido: R$ 100.0 +\n" +
+            dateAndTime + " -------- Depósito recebido: R$ 100.0 +"
+            + System.getProperty("line.separator"),
+        os.toString());
 
   }
 
