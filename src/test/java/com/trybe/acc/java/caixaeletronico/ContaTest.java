@@ -48,7 +48,14 @@ class ContaTest {
   @Test
   @DisplayName ("8 - Testa o método retornar resumo está retornando uma string com os valores corretamente.")
   void retornarResumoContaTest() {
-    fail("Não implementado");
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta account = new Conta("Corrente", client, bank);
+
+    account.adicionarTransacao(100, "Depósito recebido");
+
+    assertEquals(account.getIdConta() + " : R$100.0 : Corrente"
+        , account.retornarResumoConta());
 
   }
 
