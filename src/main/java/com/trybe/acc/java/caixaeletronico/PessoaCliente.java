@@ -63,4 +63,16 @@ public class PessoaCliente {
   public int retornarNumeroDeContas() {
     return contas.size();
   }
+
+  /**
+   * Retornar saldo conta especifica double.
+   *
+   * @param accountIndex the account index
+   *
+   * @return the double
+   */
+  public double retornarSaldoContaEspecifica(int accountIndex) {
+    Conta specificAccount = this.contas.get(accountIndex);
+    return specificAccount.retornarSaldo();
+  }
 }
