@@ -75,4 +75,16 @@ public class PessoaCliente {
     Conta specificAccount = this.contas.get(accountIndex);
     return specificAccount.retornarSaldo();
   }
+
+  /**
+   * Retornar id conta especifica string.
+   *
+   * @param accountIndex the account index
+   *
+   * @return the string
+   */
+  public String retornarIdContaEspecifica(int accountIndex) {
+    Conta specificAccount = this.contas.get(accountIndex);
+    return specificAccount.getIdConta();
+  }
 }
