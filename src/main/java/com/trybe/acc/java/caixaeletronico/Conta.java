@@ -69,4 +69,13 @@ public class Conta {
     }
     return balance;
   }
+
+  /**
+   * Retornar extrato.
+   */
+  public void retornarExtrato() {
+    for (Transacao transaction: this.transacoes) {
+      System.out.println(transaction.retornarResumoTransacao());
+    }
+  }
 }
