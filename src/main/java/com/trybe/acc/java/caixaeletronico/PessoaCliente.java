@@ -111,4 +111,12 @@ public class PessoaCliente {
     specificAccount.adicionarTransacao(quantity, description);
   }
 
+  /**
+   * Retornar resumo contas.
+   */
+  public void retornarResumoContas() {
+    for (Conta accounts: this.contas) {
+      System.out.println(accounts.retornarResumoConta());
+    }
+  }
 }
