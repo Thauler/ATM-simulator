@@ -25,6 +25,15 @@ public class Conta {
   }
 
   /**
+   * Gets pessoa cliente.
+   *
+   * @return the pessoa cliente
+   */
+  public PessoaCliente getPessoaCliente() {
+    return pessoaCliente;
+  }
+
+  /**
    * Gets id conta.
    *
    * @return the id conta
