@@ -63,10 +63,11 @@ public class Banco {
    * @return the pessoa cliente
    */
   public PessoaCliente pessoaClienteLogin(String cpf, String senha) {
+
     PessoaCliente clienteLogin = null;
 
-    for (PessoaCliente client: pessoasClientes) {
-      if (!client.validarSenha(senha) || !findCpf(cpf)) {
+    for (PessoaCliente client : pessoasClientes) {
+      if (! client.validarSenha(senha) || ! findCpf(cpf)) {
         return clienteLogin;
       }
       clienteLogin = client;
@@ -77,4 +78,17 @@ public class Banco {
   private boolean findCpf(String cpfCheck) {
     return pessoasClientes.stream().anyMatch(client -> Objects.equals(client.getCpf(), cpfCheck));
   }
+
+  /**
+   * Depositar.
+   *
+   * @param clienteLogado the cliente logado
+   * @param paraConta     the para conta
+   * @param quantia       the quantia
+   */
+  public void depositar(PessoaCliente clienteLogado, int paraConta, double quantia) {
+    String messageOfTransaction = "Depósito recebido";
+    clienteLogado.adicionarTransacaoContaEspecifica(paraConta, quantia, messageOfTransaction);
+  }
+
 }
