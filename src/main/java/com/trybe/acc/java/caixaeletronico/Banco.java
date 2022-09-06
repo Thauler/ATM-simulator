@@ -122,5 +122,15 @@ public class Banco {
     clienteLogado.retornarExtratoContaEspecifica(accountIndex);
   }
 
-
+  /**
+   * Sacar.
+   *
+   * @param client       the client
+   * @param accountIndex the account index
+   * @param quantity     the quantity
+   */
+  public void sacar(PessoaCliente client, int accountIndex, double quantity) {
+    String messageOfTransaction = "Saque efetuado";
+    client.adicionarTransacaoContaEspecifica(accountIndex, quantity, messageOfTransaction);
+  }
 }
