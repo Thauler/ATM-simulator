@@ -60,7 +60,7 @@ public class PessoaCliente {
    *
    * @return the int
    */
-  public int retornarNumeroDeContas() {
+  public int retornaNumeroDeContas() {
     return contas.size();
   }
 

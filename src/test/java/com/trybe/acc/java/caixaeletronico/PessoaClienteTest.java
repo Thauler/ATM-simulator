@@ -41,7 +41,7 @@ class PessoaClienteTest {
 
     client.adicionarConta(account);
 
-    assertEquals(1, client.retornarNumeroDeContas());
+    assertEquals(1, client.retornaNumeroDeContas());
   }
 
   @Test
