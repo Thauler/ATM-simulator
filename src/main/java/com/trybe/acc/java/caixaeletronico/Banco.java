@@ -112,5 +112,15 @@ public class Banco {
 
   }
 
+  /**
+   * Mostrar extrato.
+   *
+   * @param clienteLogado the cliente logado
+   * @param accountIndex  the account index
+   */
+  public void mostrarExtrato(PessoaCliente clienteLogado, int accountIndex) {
+    clienteLogado.retornarExtratoContaEspecifica(accountIndex);
+  }
+
 
 }
