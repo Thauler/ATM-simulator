@@ -98,10 +98,38 @@ class BancoTest {
   }
 
   @Test
-  @DisplayName("5 - Testa se o método sacar está funcionando corretamente.")
+  @DisplayName ("5 - Testa se o método sacar está funcionando corretamente.")
   void depositarTestSacarTestMostrarExtratoTest() {
-    fail("Não implementado");
+    String messageOfDeposit = "Depósito recebido";
+    String messageOfWithdraw = "Saque efetuado";
+    int accountIndex = 0;
+    double quantity = 100.00;
 
+    String formato = "dd/MM/yyyy HH:mm:ss";
+    String dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(formato));
+
+    OutputStream os = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(os);
+    System.setOut(ps);
+
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta checkingAccount = new Conta("Corrente", client, bank);
+
+    client.adicionarConta(checkingAccount);
+
+    bank.depositar(client, accountIndex, quantity);
+
+    bank.sacar(client, accountIndex, quantity);
+
+    bank.mostrarExtrato(client, 0);
+
+    assertEquals("Nova pessoa cliente Thauler com CPF: 123.456.789-10 criada!\n" +
+            dateAndTime + " -------- " + messageOfDeposit + ": R$ 100.0 +\n" +
+            dateAndTime + " -------- " + messageOfWithdraw + ": R$ 100.0 -"
+
+            + System.getProperty("line.separator"),
+        os.toString());
   }
 
 }
