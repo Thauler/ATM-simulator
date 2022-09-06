@@ -1,17 +1,23 @@
 package com.trybe.acc.java.caixaeletronico;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-@DisplayName("Testes para a classe Banco")
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+
+@DisplayName ("Testes para a classe Banco")
 class BancoTest {
 
   @Test
-  @DisplayName("1 - Testa o gerador de número único para nova conta.")
+  @DisplayName ("1 - Testa o gerador de número único para nova conta.")
   void gerarNumeroNovaContaTest() {
     Banco bank = new Banco();
     bank.gerarNumeroNovaConta();
@@ -19,7 +25,7 @@ class BancoTest {
   }
 
   @Test
-  @DisplayName("2 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
+  @DisplayName ("2 - Testa o método adicionar pessoa cliente retorna o objeto pessoa cliente.")
   void adicionarPessoaClienteTest() {
     Banco bank = new Banco();
     assertEquals(PessoaCliente.class,
@@ -27,7 +33,7 @@ class BancoTest {
   }
 
   @Test
-  @DisplayName("3 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
+  @DisplayName ("3 - Testa o método login da pessoa cliente retorna o objeto pessoa cliente corretamente.")
   void pessoaClienteLoginTest() {
 
     Banco bank = new Banco();
@@ -44,10 +50,51 @@ class BancoTest {
   }
 
   @Test
-  @DisplayName("4 - Testa se o método transferir fundos está transferindo corretamente.")
+  @DisplayName ("4 - Testa se o método transferir fundos está transferindo corretamente.")
   void depositarTestTransferirFundosTestmostrarExtratoTest() {
-    fail("Não implementado");
+    String messageOfDeposit = "Depósito recebido";
+    String messageOfTransaction = "Transferência recebida";
+    String messageOfWithdraw = "Transferência efetuada";
 
+    String formato = "dd/MM/yyyy HH:mm:ss";
+    String dateAndTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern(formato));
+
+    OutputStream os = new ByteArrayOutputStream();
+    PrintStream ps = new PrintStream(os);
+    System.setOut(ps);
+
+    PessoaCliente client = new PessoaCliente("Thauler", "123.456.789-10", "123456");
+    Banco bank = new Banco();
+    Conta checkingAccount = new Conta("Corrente", client, bank);
+    Conta savingAccount = new Conta("Poupança", client, bank);
+
+    client.adicionarConta(checkingAccount);
+    client.adicionarConta(savingAccount);
+
+    bank.depositar(client, 0, 100.00);
+    bank.depositar(client, 1, 100.00);
+
+    bank.transferirFundos(client, 0, 1, 100.00);
+
+    bank.mostrarExtrato(client, 0);
+
+    assertEquals("Nova pessoa cliente Thauler com CPF: 123.456.789-10 criada!\n" +
+            dateAndTime + " -------- " + messageOfDeposit + ": R$ 100.0 +\n" +
+        dateAndTime + " -------- " + messageOfWithdraw + ": R$ 100.0 -"
+
+            + System.getProperty("line.separator"),
+        os.toString());
+
+    OutputStream outStream = new ByteArrayOutputStream();
+    PrintStream printStream = new PrintStream(outStream);
+    System.setOut(printStream);
+
+    bank.mostrarExtrato(client, 1);
+
+    assertEquals(dateAndTime + " -------- " + messageOfDeposit + ": R$ 100.0 +\n" +
+        dateAndTime + " -------- " + messageOfTransaction + ": R$ 100.0 +"
+            + System.getProperty("line.separator"),
+        outStream.toString());
   }
 
   @Test
