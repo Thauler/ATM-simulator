@@ -91,4 +91,26 @@ public class Banco {
     clienteLogado.adicionarTransacaoContaEspecifica(paraConta, quantia, messageOfTransaction);
   }
 
+  /**
+   * Transferir fundos.
+   *
+   * @param clienteLogado the cliente logado
+   * @param daConta       the da conta
+   * @param paraConta     the para conta
+   * @param quantia       the quantia
+   */
+  public void transferirFundos(
+      PessoaCliente clienteLogado, int daConta, int paraConta, double quantia) {
+
+    String messageOfWithdraw = "Transferência efetuada";
+
+    String messageOfTransaction = "Transferência recebida";
+
+    clienteLogado.adicionarTransacaoContaEspecifica(daConta, quantia, messageOfWithdraw);
+
+    clienteLogado.adicionarTransacaoContaEspecifica(paraConta, quantia, messageOfTransaction);
+
+  }
+
+
 }
